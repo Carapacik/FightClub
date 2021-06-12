@@ -141,17 +141,17 @@ class MyHomePageState extends State<MyHomePage> {
 
         // Логика изменения теста описания
         if (!enemyLoseLife) {
-          description += "Your attack was blocked.";
+          description += "Your attack was blocked.\n";
         } else {
           description +=
-              "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.";
+              "You hit enemy\'s ${attackingBodyPart!.name.toLowerCase()}.\n";
         }
 
         if (!youLoseLife) {
-          description += "\nEnemy’s attack was blocked.";
+          description += "Enemy\'s attack was blocked.";
         } else {
           description +=
-              "\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
+              "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
         }
 
         if (enemyLoseLife) {
