@@ -412,7 +412,8 @@ class LivesWidget extends StatelessWidget {
       children: List.generate(overallLivesCount, (index) {
         if (index < currentLivesCount) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 4),
+            padding:
+                EdgeInsets.only(bottom: overallLivesCount == index ? 4 : 0),
             child: Image.asset(
               FightClubIcons.heartFull,
               width: 18,
@@ -421,7 +422,8 @@ class LivesWidget extends StatelessWidget {
           );
         } else {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 4),
+            padding:
+                EdgeInsets.only(bottom: overallLivesCount == index ? 4 : 0),
             child: Image.asset(
               FightClubIcons.heartEmpty,
               width: 18,
