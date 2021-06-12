@@ -60,10 +60,11 @@ class MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ColoredBox(
-                    color: FightClubColors.descriptionBackground,
+                child: ColoredBox(
+                  color: FightClubColors.descriptionBackground,
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
                     child: Center(
                       child: Text(
                         _getDescription(),
@@ -276,8 +277,10 @@ class ControlsWidget extends StatelessWidget {
       Expanded(
         child: Column(
           children: [
-            Text("Attack".toUpperCase(),
-              style: TextStyle(color: FightClubColors.darkGreyText),),
+            Text(
+              "Attack".toUpperCase(),
+              style: TextStyle(color: FightClubColors.darkGreyText),
+            ),
             SizedBox(height: 13),
             BodyPartButton(
               bodyPart: BodyPart.head,
@@ -349,8 +352,10 @@ class FightersInfo extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 16),
-                  Text("You",
-                    style: TextStyle(color: FightClubColors.darkGreyText),),
+                  Text(
+                    "You",
+                    style: TextStyle(color: FightClubColors.darkGreyText),
+                  ),
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.youAvatar,
@@ -364,8 +369,10 @@ class FightersInfo extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 16),
-                  Text("Enemy",
-                    style: TextStyle(color: FightClubColors.darkGreyText),),
+                  Text(
+                    "Enemy",
+                    style: TextStyle(color: FightClubColors.darkGreyText),
+                  ),
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.enemyAvatar,
