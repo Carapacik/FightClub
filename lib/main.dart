@@ -36,8 +36,8 @@ class MyHomePageState extends State<MyHomePage> {
   BodyPart? defendingBodyPart;
   BodyPart? attackingBodyPart;
 
-  BodyPart whatEnemyDefend = BodyPart.random();
-  BodyPart whatEnemyAttack = BodyPart.random();
+  BodyPart whatEnemyDefends = BodyPart.random();
+  BodyPart whatEnemyAttacks = BodyPart.random();
 
   int yourLives = maxLives;
   int enemiesLives = maxLives;
@@ -135,8 +135,8 @@ class MyHomePageState extends State<MyHomePage> {
       });
     } else if (_isAllBodyPartsSelected()) {
       setState(() {
-        final bool enemyLoseLife = attackingBodyPart != whatEnemyDefend;
-        final bool youLoseLife = defendingBodyPart != whatEnemyAttack;
+        final bool enemyLoseLife = attackingBodyPart != whatEnemyDefends;
+        final bool youLoseLife = defendingBodyPart != whatEnemyAttacks;
 
         // Логика изменения теста описания
         if (!enemyLoseLife) {
@@ -150,7 +150,7 @@ class MyHomePageState extends State<MyHomePage> {
           description += "\nEnemy’s attack was blocked.";
         } else {
           description +=
-              "\nEnemy hit your ${whatEnemyAttack.name.toLowerCase()} .";
+              "\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
         }
 
         if (enemyLoseLife) {
@@ -160,8 +160,8 @@ class MyHomePageState extends State<MyHomePage> {
           yourLives--;
         }
 
-        whatEnemyDefend = BodyPart.random();
-        whatEnemyAttack = BodyPart.random();
+        whatEnemyDefends = BodyPart.random();
+        whatEnemyAttacks = BodyPart.random();
 
         defendingBodyPart = null;
         attackingBodyPart = null;
