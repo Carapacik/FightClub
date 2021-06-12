@@ -40,7 +40,7 @@ class MyHomePageState extends State<MyHomePage> {
   BodyPart whatEnemyAttacks = BodyPart.random();
 
   int yourLives = maxLives;
-  int enemiesLives = maxLives;
+  int enemysLives = maxLives;
 
   String description = "";
 
@@ -54,7 +54,7 @@ class MyHomePageState extends State<MyHomePage> {
             FightersInfo(
               maxLivesCount: maxLives,
               yourLivesCount: yourLives,
-              enemiesLivesCount: enemiesLives,
+              enemysLivesCount: enemysLives,
             ),
             Expanded(
               child: Padding(
@@ -96,10 +96,10 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   String _getDescription() {
-    if (yourLives == 0 && enemiesLives == 0) {
+    if (yourLives == 0 && enemysLives == 0) {
       return "Draw";
     }
-    if (enemiesLives == 0) {
+    if (enemysLives == 0) {
       return "You won";
     }
     if (yourLives == 0) {
@@ -123,7 +123,7 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   bool _isLivesCountZero() {
-    return yourLives == 0 || enemiesLives == 0;
+    return yourLives == 0 || enemysLives == 0;
   }
 
   void _onGoButtonClicked() {
@@ -131,7 +131,7 @@ class MyHomePageState extends State<MyHomePage> {
     if (_isLivesCountZero()) {
       setState(() {
         yourLives = maxLives;
-        enemiesLives = maxLives;
+        enemysLives = maxLives;
       });
     } else if (_isAllBodyPartsSelected()) {
       setState(() {
@@ -154,7 +154,7 @@ class MyHomePageState extends State<MyHomePage> {
         }
 
         if (enemyLoseLife) {
-          enemiesLives--;
+          enemysLives--;
         }
         if (youLoseLife) {
           yourLives--;
@@ -303,13 +303,13 @@ class ControlsWidget extends StatelessWidget {
 class FightersInfo extends StatelessWidget {
   final int maxLivesCount;
   final int yourLivesCount;
-  final int enemiesLivesCount;
+  final int enemysLivesCount;
 
   const FightersInfo({
     Key? key,
     required this.maxLivesCount,
     required this.yourLivesCount,
-    required this.enemiesLivesCount,
+    required this.enemysLivesCount,
   }) : super(key: key);
 
   @override
@@ -369,7 +369,7 @@ class FightersInfo extends StatelessWidget {
               ),
               LivesWidget(
                 overallLivesCount: maxLivesCount,
-                currentLivesCount: enemiesLivesCount,
+                currentLivesCount: enemysLivesCount,
               ),
             ],
           ),
