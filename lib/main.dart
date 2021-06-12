@@ -336,7 +336,7 @@ class FightersInfo extends StatelessWidget {
               ),
               Expanded(
                 child: ColoredBox(
-                  color: Color(0xFFC5D1EA),
+                  color: FightClubColors.descriptionBackground,
                   child: SizedBox(height: 160),
                 ),
               )
