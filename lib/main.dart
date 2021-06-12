@@ -247,7 +247,10 @@ class ControlsWidget extends StatelessWidget {
       Expanded(
         child: Column(
           children: [
-            Text("Defend".toUpperCase()),
+            Text(
+              "Defend".toUpperCase(),
+              style: TextStyle(color: FightClubColors.darkGreyText),
+            ),
             SizedBox(height: 13),
             BodyPartButton(
               bodyPart: BodyPart.head,
@@ -273,7 +276,8 @@ class ControlsWidget extends StatelessWidget {
       Expanded(
         child: Column(
           children: [
-            Text("Attack".toUpperCase()),
+            Text("Attack".toUpperCase(),
+              style: TextStyle(color: FightClubColors.darkGreyText),),
             SizedBox(height: 13),
             BodyPartButton(
               bodyPart: BodyPart.head,
@@ -319,6 +323,7 @@ class FightersInfo extends StatelessWidget {
       child: Stack(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: ColoredBox(
@@ -344,7 +349,8 @@ class FightersInfo extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 16),
-                  Text("You"),
+                  Text("You",
+                    style: TextStyle(color: FightClubColors.darkGreyText),),
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.youAvatar,
@@ -358,7 +364,8 @@ class FightersInfo extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 16),
-                  Text("Enemy"),
+                  Text("Enemy",
+                    style: TextStyle(color: FightClubColors.darkGreyText),),
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.enemyAvatar,
