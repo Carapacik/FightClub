@@ -65,7 +65,9 @@ class FightResultWidget extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 22),
                 child: Center(
                   child: Text(
-                    fightResult.result.toLowerCase(),
+                    fightResult.result.toLowerCase(),style: TextStyle(
+                    color: FightClubColors.white
+                  ),
                   ),
                 ),
               ),

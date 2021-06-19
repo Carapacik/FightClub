@@ -37,12 +37,10 @@ class _MainPageContent extends StatelessWidget {
             Expanded(child: SizedBox()),
             FutureBuilder<String?>(
                 future: SharedPreferences.getInstance().then(
-                    (sharedPreferences) =>
-                        sharedPreferences.getString("last_fight_result")),
+                    (sharedPreferences) => sharedPreferences.getString("last_fight_result")),
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData || snapshot.data == null) {
+                  if (!snapshot.hasData || snapshot.data == null)
                     return const SizedBox();
-                  }
                   return Column(
                     children: [
                       Text(
@@ -51,7 +49,7 @@ class _MainPageContent extends StatelessWidget {
                       ),
                       SizedBox(height: 12),
                       FightResultWidget(
-                          fightResult: _getFightResult(snapshot.data!))
+                          fightResult: _getFightResult(snapshot.data!)),
                     ],
                   );
                 }),
@@ -64,7 +62,7 @@ class _MainPageContent extends StatelessWidget {
                         ),
                       ),
                     },
-                text: "Statistic"),
+                text: "Statistics"),
             const SizedBox(height: 16),
             ActionButton(
               onTap: () => {
@@ -85,7 +83,6 @@ class _MainPageContent extends StatelessWidget {
   }
 
   FightResult _getFightResult(String string) {
-    print(string);
     if (string == "Won") {
       return FightResult.won;
     } else if (string == "Lost") {

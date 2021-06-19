@@ -119,6 +119,20 @@ class FightPageState extends State<FightPage> {
                 "last_fight_result", fightResult.result);
           });
         }
+        if (fightResult == FightResult.won) {
+          SharedPreferences.getInstance().then((sharedPreferences) {
+            sharedPreferences.setInt("stats_won", 1);
+          });
+        } else if (fightResult == FightResult.draw) {
+          SharedPreferences.getInstance().then((sharedPreferences) {
+            sharedPreferences.setInt("stats_draw", 1);
+          });
+        } else if (fightResult == FightResult.lost) {
+          SharedPreferences.getInstance().then((sharedPreferences) {
+            sharedPreferences.setInt("stats_lost", 1);
+          });
+        }
+
         centerText = _calculateCenterText(youLoseLife, enemyLoseLife);
 
         whatEnemyDefends = BodyPart.random();
@@ -275,7 +289,10 @@ class FightersInfo extends StatelessWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [FightClubColors.white, FightClubColors.darkPurple],
+                      colors: [
+                        FightClubColors.white,
+                        FightClubColors.darkPurple
+                      ],
                     ),
                   ),
                 ),

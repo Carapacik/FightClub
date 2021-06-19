@@ -23,6 +23,28 @@ class StatisticsPage extends StatelessWidget {
                   ),
                 )),
             Expanded(child: SizedBox()),
+            Column(
+              children: [
+                Text(
+                  "Won: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: FightClubColors.darkGreyText),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  "Draw: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: FightClubColors.darkGreyText),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  "Lose: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: FightClubColors.darkGreyText),
+                ),
+              ],
+            ),
+            Expanded(child: SizedBox()),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: SecondaryActionButton(
