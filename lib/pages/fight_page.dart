@@ -270,12 +270,12 @@ class FightersInfo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(child: ColoredBox(color: Colors.white)),
+              Expanded(child: ColoredBox(color: FightClubColors.white)),
               Expanded(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.white, FightClubColors.darkPurple],
+                      colors: [FightClubColors.white, FightClubColors.darkPurple],
                     ),
                   ),
                 ),
