@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
@@ -14,7 +13,7 @@ class FightResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 140,
       child: Stack(
         children: [
@@ -38,68 +37,54 @@ class FightResultWidget extends StatelessWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const SizedBox(width: 8),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 12),
                   Text(
                     "You",
-                    style: TextStyle(color: FightClubColors.darkGreyText),
+                    style: TextStyle(
+                        color: FightClubColors.darkGreyText, fontSize: 14),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(
-                    FightClubImages.youAvatar,
-                    width: 92,
-                    height: 92,
-                  )
+                  Image.asset(FightClubImages.youAvatar, width: 92, height: 92)
                 ],
               ),
               Container(
                 height: 44,
-                width: 72,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getColor(fightResult),
+                  color: fightResult.color,
                   borderRadius: BorderRadius.circular(22),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 22),
                 child: Center(
                   child: Text(
-                    fightResult.result.toLowerCase(),style: TextStyle(
-                    color: FightClubColors.white
-                  ),
+                    fightResult.result.toLowerCase(),
+                    style:
+                        TextStyle(color: FightClubColors.white, fontSize: 16),
                   ),
                 ),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 12),
                   Text(
                     "Enemy",
-                    style: TextStyle(color: FightClubColors.darkGreyText),
+                    style: TextStyle(
+                        color: FightClubColors.darkGreyText, fontSize: 14),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(
-                    FightClubImages.enemyAvatar,
-                    width: 92,
-                    height: 92,
-                  )
+                  Image.asset(FightClubImages.enemyAvatar,
+                      width: 92, height: 92)
                 ],
               ),
+              const SizedBox(width: 8)
             ],
           ),
         ],
       ),
     );
-  }
-
-  Color _getColor(FightResult fightResult) {
-    if (fightResult == FightResult.won) {
-      return Color(0xFF038800);
-    } else if (fightResult == FightResult.lost) {
-      return Color(0xFFEA2C2C);
-    } else {
-      return Color(0xFF1C79CE);
-    }
   }
 }
