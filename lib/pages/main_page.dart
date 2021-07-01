@@ -17,7 +17,12 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class _MainPageContent extends StatelessWidget {
+class _MainPageContent extends StatefulWidget {
+  @override
+  __MainPageContentState createState() => __MainPageContentState();
+}
+
+class __MainPageContentState extends State<_MainPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,12 +77,13 @@ class _MainPageContent extends StatelessWidget {
                 text: "Statistics"),
             const SizedBox(height: 16),
             ActionButton(
-              onTap: () => {
-                Navigator.of(context).push(
+              onTap: () async {
+                await Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => FightPage(),
                   ),
-                ),
+                );
+                setState(() {});
               },
               color: FightClubColors.blackButton,
               text: "Start",
