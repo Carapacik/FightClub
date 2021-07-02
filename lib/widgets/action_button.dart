@@ -1,5 +1,5 @@
+import 'package:fightclub/resources/fight_club_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 
 class ActionButton extends StatelessWidget {
   final String text;

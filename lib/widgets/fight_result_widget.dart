@@ -1,7 +1,7 @@
+import 'package:fightclub/fight_result.dart';
+import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/fight_club_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/fight_result.dart';
-import 'package:flutter_fight_club/resources/fight_club_colors.dart';
-import 'package:flutter_fight_club/resources/fight_club_images.dart';
 
 class FightResultWidget extends StatelessWidget {
   final FightResult fightResult;
@@ -49,7 +49,7 @@ class FightResultWidget extends StatelessWidget {
                         color: FightClubColors.darkGreyText, fontSize: 14),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(FightClubImages.youAvatar, width: 92, height: 92)
+                  Image.asset(FightClubImages.youAvatar, width: 90, height: 90)
                 ],
               ),
               Container(
@@ -77,7 +77,7 @@ class FightResultWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Image.asset(FightClubImages.enemyAvatar,
-                      width: 92, height: 92)
+                      width: 90, height: 90)
                 ],
               ),
               const SizedBox(width: 8)

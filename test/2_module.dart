@@ -1,15 +1,14 @@
+import 'package:fightclub/main.dart';
+import 'package:fightclub/widgets/secondary_action_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/main.dart';
-import 'package:flutter_fight_club/widgets/secondary_action_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../container_checks.dart';
-import '../test_helpers.dart';
-import '../text_checks.dart';
+import 'container_checks.dart';
+import 'test_helpers.dart';
+import 'text_checks.dart';
 
-void runTestLecture4hometask2() {
-  testWidgets(
-      "module2", (WidgetTester tester) async {
+void module2() {
+  testWidgets("module2", (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -66,8 +65,8 @@ void runTestLecture4hometask2() {
 
     await tester.pumpWidget(MyApp());
 
-    final secondaryActionButtonFinder =
-        findTypeByTextOnlyInParentType(SecondaryActionButton, "Statistics".toUpperCase(), Column);
+    final secondaryActionButtonFinder = findTypeByTextOnlyInParentType(
+        SecondaryActionButton, "Statistics".toUpperCase(), Column);
     expect(
       secondaryActionButtonFinder,
       findsOneWidget,
@@ -80,7 +79,8 @@ void runTestLecture4hometask2() {
     expect(
       gestureDetectorFinder,
       findsOneWidget,
-      reason: "There are should be a GestureDetector inside SecondaryActionButton",
+      reason:
+          "There are should be a GestureDetector inside SecondaryActionButton",
     );
   });
 }

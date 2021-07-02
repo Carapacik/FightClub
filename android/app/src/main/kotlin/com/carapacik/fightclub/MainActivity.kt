@@ -1,4 +1,4 @@
-package ru.skillbranch.flutter_fight_club
+package com.carapacik.fightclub
 
 import io.flutter.embedding.android.FlutterActivity
 

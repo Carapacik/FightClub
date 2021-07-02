@@ -1,21 +1,22 @@
+import 'package:fightclub/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../container_checks.dart';
-import '../test_helpers.dart';
-import '../text_checks.dart';
+import 'container_checks.dart';
+import 'test_helpers.dart';
+import 'text_checks.dart';
 
-void runTestLecture4hometask1() {
+void module1() {
   testWidgets('module1', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
 
-    final containerFinder =
-        findTypeByTextOnlyInParentType(Container, "Statistics".toUpperCase(), Column);
+    final containerFinder = findTypeByTextOnlyInParentType(
+        Container, "Statistics".toUpperCase(), Column);
     expect(
       containerFinder,
       isNotNull,
-      reason: "There are should be a Container with text 'STATISTICS' in Column",
+      reason:
+          "There are should be a Container with text 'STATISTICS' in Column",
     );
 
     final Container container = tester.widget<Container>(containerFinder);

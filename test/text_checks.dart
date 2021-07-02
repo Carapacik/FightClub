@@ -11,7 +11,8 @@ void checkTextProperties({
   final Color? textColor,
   final FontWeight? fontWeight,
 }) {
-  final String widgetName = "Text widget${text != null ? " with text '$text'" : ""}";
+  final String widgetName =
+      "Text widget${text != null ? " with text '$text'" : ""}";
   if (textAlign != null) {
     expect(
       textWidget.textAlign,
@@ -65,11 +66,14 @@ void _checkTextStyleProperty<T>({
   expect(
     property,
     isNotNull,
-    reason: "The style of $widgetName should have not null $propertyName property",
+    reason:
+        "The style of $widgetName should have not null $propertyName property",
   );
   expect(
     property,
-    secondRightValue != null ? isOneOrAnother(rightValue, secondRightValue) : rightValue,
+    secondRightValue != null
+        ? isOneOrAnother(rightValue, secondRightValue)
+        : rightValue,
     reason: "The style of $widgetName should have $propertyName "
         "${secondRightValue != null ? "either $rightValue or $secondRightValue" : rightValue}",
   );

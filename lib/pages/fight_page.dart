@@ -1,11 +1,11 @@
 import 'dart:math';
 
+import 'package:fightclub/fight_result.dart';
+import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/fight_club_icons.dart';
+import 'package:fightclub/resources/fight_club_images.dart';
+import 'package:fightclub/widgets/action_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fight_club/fight_result.dart';
-import 'package:flutter_fight_club/resources/fight_club_colors.dart';
-import 'package:flutter_fight_club/resources/fight_club_icons.dart';
-import 'package:flutter_fight_club/resources/fight_club_images.dart';
-import 'package:flutter_fight_club/widgets/action_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
@@ -23,8 +23,8 @@ class FightPageState extends State<FightPage> {
   BodyPart whatEnemyDefends = BodyPart.random();
   BodyPart whatEnemyAttacks = BodyPart.random();
 
-  int yourLives = maxLives;
-  int enemysLives = maxLives;
+  int youLives = maxLives;
+  int enemyLives = maxLives;
 
   String centerText = "";
 
@@ -37,8 +37,8 @@ class FightPageState extends State<FightPage> {
           children: [
             FightersInfo(
               maxLivesCount: maxLives,
-              yourLivesCount: yourLives,
-              enemysLivesCount: enemysLives,
+              youLivesCount: youLives,
+              enemyLivesCount: enemyLives,
             ),
             Expanded(
               child: Padding(
@@ -93,7 +93,7 @@ class FightPageState extends State<FightPage> {
   }
 
   bool _isLivesCountZero() {
-    return yourLives == 0 || enemysLives == 0;
+    return youLives == 0 || enemyLives == 0;
   }
 
   void _onGoButtonClicked() {
@@ -105,14 +105,14 @@ class FightPageState extends State<FightPage> {
         final bool youLoseLife = defendingBodyPart != whatEnemyAttacks;
 
         if (enemyLoseLife) {
-          enemysLives--;
+          enemyLives--;
         }
         if (youLoseLife) {
-          yourLives--;
+          youLives--;
         }
 
         final FightResult? fightResult =
-            FightResult.calculateResult(yourLives, enemysLives);
+            FightResult.calculateResult(youLives, enemyLives);
         if (fightResult != null) {
           SharedPreferences.getInstance().then((sharedPreferences) {
             sharedPreferences.setString(
@@ -135,11 +135,11 @@ class FightPageState extends State<FightPage> {
 
   String _calculateCenterText(
       final bool youLoseLife, final bool enemyLoseLife) {
-    if (yourLives == 0 && enemysLives == 0) {
+    if (youLives == 0 && enemyLives == 0) {
       return "Draw";
-    } else if (enemysLives == 0) {
+    } else if (enemyLives == 0) {
       return "You won";
-    } else if (yourLives == 0) {
+    } else if (youLives == 0) {
       return "You lost";
     } else {
       final String first = enemyLoseLife
@@ -254,14 +254,14 @@ class ControlsWidget extends StatelessWidget {
 
 class FightersInfo extends StatelessWidget {
   final int maxLivesCount;
-  final int yourLivesCount;
-  final int enemysLivesCount;
+  final int youLivesCount;
+  final int enemyLivesCount;
 
   const FightersInfo({
     Key? key,
     required this.maxLivesCount,
-    required this.yourLivesCount,
-    required this.enemysLivesCount,
+    required this.youLivesCount,
+    required this.enemyLivesCount,
   }) : super(key: key);
 
   @override
@@ -294,7 +294,7 @@ class FightersInfo extends StatelessWidget {
             children: [
               LivesWidget(
                 overallLivesCount: maxLivesCount,
-                currentLivesCount: yourLivesCount,
+                currentLivesCount: youLivesCount,
               ),
               Column(
                 children: [
@@ -306,8 +306,8 @@ class FightersInfo extends StatelessWidget {
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.youAvatar,
-                    width: 92,
-                    height: 92,
+                    width: 90,
+                    height: 90,
                   )
                 ],
               ),
@@ -337,14 +337,14 @@ class FightersInfo extends StatelessWidget {
                   const SizedBox(height: 12),
                   Image.asset(
                     FightClubImages.enemyAvatar,
-                    width: 92,
-                    height: 92,
+                    width: 90,
+                    height: 90,
                   )
                 ],
               ),
               LivesWidget(
                 overallLivesCount: maxLivesCount,
-                currentLivesCount: enemysLivesCount,
+                currentLivesCount: enemyLivesCount,
               ),
             ],
           ),

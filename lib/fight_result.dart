@@ -1,5 +1,5 @@
-import 'package:flutter/painting.dart';
-import 'package:flutter_fight_club/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:flutter/material.dart';
 
 class FightResult {
   final String result;
@@ -18,12 +18,12 @@ class FightResult {
   }
 
   static FightResult? calculateResult(
-      final int yourLives, final int enemysLives) {
-    if (yourLives == 0 && enemysLives == 0) {
+      final int youLives, final int enemyLives) {
+    if (youLives == 0 && enemyLives == 0) {
       return draw;
-    } else if (yourLives == 0) {
+    } else if (youLives == 0) {
       return lost;
-    } else if (enemysLives == 0) {
+    } else if (enemyLives == 0) {
       return won;
     } else {
       return null;
