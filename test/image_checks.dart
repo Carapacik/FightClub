@@ -8,7 +8,7 @@ void checkImageProperties({
   final BoxFit? boxFit,
   final ImageProvider? imageProvider,
 }) {
-  final String widgetName = "Image";
+  const String widgetName = "Image";
   if (height != null) {
     expect(
       image.height,

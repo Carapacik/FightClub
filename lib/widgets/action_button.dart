@@ -20,14 +20,15 @@ class ActionButton extends StatelessWidget {
       child: Container(
         color: color,
         height: 40,
-        margin: EdgeInsets.symmetric(horizontal: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16),
         alignment: Alignment.center,
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 16,
-              color: FightClubColors.whiteText),
+          style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 16,
+            color: FightClubColors.whiteText,
+          ),
         ),
       ),
     );

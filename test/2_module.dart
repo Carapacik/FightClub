@@ -17,8 +17,7 @@ void module2() {
       ),
     );
 
-    final containerFinder = findTypeByTextOnlyInParentType(
-        Container, "Statistics".toUpperCase(), SecondaryActionButton);
+    final containerFinder = findTypeByTextOnlyInParentType(Container, "Statistics".toUpperCase(), SecondaryActionButton);
 
     final Container container = tester.widget<Container>(containerFinder);
 
@@ -63,10 +62,9 @@ void module2() {
       textColor: const Color(0xFF161616),
     );
 
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(App());
 
-    final secondaryActionButtonFinder = findTypeByTextOnlyInParentType(
-        SecondaryActionButton, "Statistics".toUpperCase(), Column);
+    final secondaryActionButtonFinder = findTypeByTextOnlyInParentType(SecondaryActionButton, "Statistics".toUpperCase(), Column);
     expect(
       secondaryActionButtonFinder,
       findsOneWidget,
@@ -74,13 +72,11 @@ void module2() {
           "with text 'STATISTICS' in a top-level Column",
     );
 
-    final gestureDetectorFinder = findTypeByTextOnlyInParentType(
-        GestureDetector, "Statistics".toUpperCase(), SecondaryActionButton);
+    final gestureDetectorFinder = findTypeByTextOnlyInParentType(GestureDetector, "Statistics".toUpperCase(), SecondaryActionButton);
     expect(
       gestureDetectorFinder,
       findsOneWidget,
-      reason:
-          "There are should be a GestureDetector inside SecondaryActionButton",
+      reason: "There are should be a GestureDetector inside SecondaryActionButton",
     );
   });
 }

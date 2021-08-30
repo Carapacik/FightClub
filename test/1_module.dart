@@ -8,15 +8,13 @@ import 'text_checks.dart';
 
 void module1() {
   testWidgets('module1', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(App());
 
-    final containerFinder = findTypeByTextOnlyInParentType(
-        Container, "Statistics".toUpperCase(), Column);
+    final containerFinder = findTypeByTextOnlyInParentType(Container, "Statistics".toUpperCase(), Column);
     expect(
       containerFinder,
       isNotNull,
-      reason:
-          "There are should be a Container with text 'STATISTICS' in Column",
+      reason: "There are should be a Container with text 'STATISTICS' in Column",
     );
 
     final Container container = tester.widget<Container>(containerFinder);

@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:fightclub/main.dart';
 import 'package:fightclub/pages/main_page.dart';
 import 'package:fightclub/pages/statistics_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'test_helpers.dart';
 
 void module3() {
-  testWidgets('module3',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+  testWidgets('module3', (WidgetTester tester) async {
+    await tester.pumpWidget(App());
 
-    final gestureDetectorFinder =
-        findTypeByTextOnlyInParentType(GestureDetector, "Statistics".toUpperCase(), Column);
+    final gestureDetectorFinder = findTypeByTextOnlyInParentType(GestureDetector, "Statistics".toUpperCase(), Column);
     expect(
       gestureDetectorFinder,
       findsOneWidget,

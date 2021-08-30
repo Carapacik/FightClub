@@ -14,16 +14,17 @@ class StatisticsPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-                margin: EdgeInsets.only(top: 24),
-                child: Text(
-                  "Statistics",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: FightClubColors.darkGreyText,
-                  ),
-                )),
-            Expanded(child: const SizedBox.shrink()),
+              margin: const EdgeInsets.only(top: 24),
+              child: const Text(
+                "Statistics",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                  color: FightClubColors.darkGreyText,
+                ),
+              ),
+            ),
+            const Expanded(child: SizedBox.shrink()),
             FutureBuilder<SharedPreferences>(
                 future: SharedPreferences.getInstance(),
                 builder: (context, snapshot) {
@@ -36,7 +37,7 @@ class StatisticsPage extends StatelessWidget {
                     children: [
                       Text(
                         "Won: ${sp.getInt("stats_won") ?? 0}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: FightClubColors.darkGreyText,
                         ),
@@ -44,7 +45,7 @@ class StatisticsPage extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         "Lost: ${sp.getInt("stats_lost") ?? 0}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: FightClubColors.darkGreyText,
                         ),
@@ -52,15 +53,15 @@ class StatisticsPage extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         "Draw: ${sp.getInt("stats_draw") ?? 0}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: FightClubColors.darkGreyText,
                         ),
-                      )
+                      ),
                     ],
                   );
                 }),
-            Expanded(child: const SizedBox.shrink()),
+            const Expanded(child: SizedBox.shrink()),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: SecondaryActionButton(

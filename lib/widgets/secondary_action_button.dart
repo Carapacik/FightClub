@@ -17,16 +17,14 @@ class SecondaryActionButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 40,
-        margin: EdgeInsets.symmetric(horizontal: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            border: Border.all(color: FightClubColors.darkGreyText, width: 2)),
+          border: Border.all(color: FightClubColors.darkGreyText, width: 2),
+        ),
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(
-            fontSize: 13,
-            color: FightClubColors.darkGreyText,
-          ),
+          style: const TextStyle(fontSize: 13, color: FightClubColors.darkGreyText),
         ),
       ),
     );

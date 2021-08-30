@@ -35,52 +35,50 @@ class __MainPageContentState extends State<_MainPageContent> {
               child: Text(
                 "The\nfight\nclub".toUpperCase(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 30, color: FightClubColors.darkGreyText),
+                style: const TextStyle(fontSize: 30, color: FightClubColors.darkGreyText),
               ),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             FutureBuilder<String?>(
-                future: SharedPreferences.getInstance().then(
-                  (sharedPreferences) =>
-                      sharedPreferences.getString("last_fight_result"),
-                ),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData || snapshot.data == null) {
-                    return const SizedBox();
-                  }
-                  final FightResult fightResult =
-                      FightResult.getByName(snapshot.data!);
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "Last fight result",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: FightClubColors.darkGreyText, fontSize: 14),
-                      ),
-                      const SizedBox(height: 12),
-                      FightResultWidget(fightResult: fightResult),
-                    ],
-                  );
-                }),
-            Expanded(child: SizedBox()),
+              future: SharedPreferences.getInstance().then(
+                (sharedPreferences) => sharedPreferences.getString("last_fight_result"),
+              ),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData || snapshot.data == null) {
+                  return const SizedBox();
+                }
+                final FightResult fightResult = FightResult.getByName(snapshot.data!);
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Last fight result",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: FightClubColors.darkGreyText, fontSize: 14),
+                    ),
+                    const SizedBox(height: 12),
+                    FightResultWidget(fightResult: fightResult),
+                  ],
+                );
+              },
+            ),
+            const Expanded(child: SizedBox()),
             SecondaryActionButton(
-                onTap: () => {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => StatisticsPage(),
-                        ),
-                      ),
-                    },
-                text: "Statistics"),
+              text: "Statistics",
+              onTap: () => {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const StatisticsPage(),
+                  ),
+                ),
+              },
+            ),
             const SizedBox(height: 16),
             ActionButton(
               onTap: () async {
                 await Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => FightPage(),
+                    builder: (context) => const FightPage(),
                   ),
                 );
                 setState(() {});

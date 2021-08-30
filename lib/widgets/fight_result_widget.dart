@@ -19,21 +19,18 @@ class FightResultWidget extends StatelessWidget {
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+            children: const [
               Expanded(child: ColoredBox(color: FightClubColors.white)),
               Expanded(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        FightClubColors.white,
-                        FightClubColors.darkPurple
-                      ],
+                      colors: [FightClubColors.white, FightClubColors.darkPurple],
                     ),
                   ),
                 ),
               ),
-              Expanded(child: ColoredBox(color: FightClubColors.darkPurple))
+              Expanded(child: ColoredBox(color: FightClubColors.darkPurple)),
             ],
           ),
           Row(
@@ -43,10 +40,12 @@ class FightResultWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "You",
                     style: TextStyle(
-                        color: FightClubColors.darkGreyText, fontSize: 14),
+                      color: FightClubColors.darkGreyText,
+                      fontSize: 14,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Image.asset(FightClubImages.youAvatar, width: 90, height: 90)
@@ -54,7 +53,7 @@ class FightResultWidget extends StatelessWidget {
               ),
               Container(
                 height: 44,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
                   color: fightResult.color,
                   borderRadius: BorderRadius.circular(22),
@@ -62,22 +61,19 @@ class FightResultWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     fightResult.result.toLowerCase(),
-                    style:
-                        TextStyle(color: FightClubColors.white, fontSize: 16),
+                    style: const TextStyle(color: FightClubColors.white, fontSize: 16),
                   ),
                 ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Enemy",
-                    style: TextStyle(
-                        color: FightClubColors.darkGreyText, fontSize: 14),
+                    style: TextStyle(color: FightClubColors.darkGreyText, fontSize: 14),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(FightClubImages.enemyAvatar,
-                      width: 90, height: 90)
+                  Image.asset(FightClubImages.enemyAvatar, width: 90, height: 90)
                 ],
               ),
               const SizedBox(width: 8)

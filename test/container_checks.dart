@@ -8,7 +8,7 @@ void checkContainerDecorationColor({
   required final Color color,
   final Color? secondColor,
 }) {
-  final String widgetName = "Container";
+  const String widgetName = "Container";
   expect(
     container.decoration,
     isNotNull,
@@ -27,9 +27,8 @@ void checkContainerDecorationColor({
   expect(
     (container.decoration as BoxDecoration).color,
     secondColor != null ? isOneOrAnother(color, secondColor) : color,
-    reason:
-        "$widgetName decoration should have color ${secondColor != null ? "either "
-            "$color or $secondColor" : color}",
+    reason: "$widgetName decoration should have color ${secondColor != null ? "either "
+        "$color or $secondColor" : color}",
   );
 }
 
@@ -405,14 +404,11 @@ void _checkTextStyleProperty<T>({
   expect(
     property,
     isNotNull,
-    reason:
-        "The style of $widgetName should have not null $propertyName property",
+    reason: "The style of $widgetName should have not null $propertyName property",
   );
   expect(
     property,
-    secondRightValue != null
-        ? isOneOrAnother(rightValue, secondRightValue)
-        : rightValue,
+    secondRightValue != null ? isOneOrAnother(rightValue, secondRightValue) : rightValue,
     reason: "The style of $widgetName should have $propertyName "
         "${secondRightValue != null ? "either $rightValue or $secondRightValue" : rightValue}",
   );
@@ -442,8 +438,7 @@ class EdgeInsetsCheck {
           right == other.right;
 
   @override
-  int get hashCode =>
-      top.hashCode ^ bottom.hashCode ^ left.hashCode ^ right.hashCode;
+  int get hashCode => top.hashCode ^ bottom.hashCode ^ left.hashCode ^ right.hashCode;
 }
 
 class WidthAndHeight {
@@ -454,11 +449,7 @@ class WidthAndHeight {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is WidthAndHeight &&
-          runtimeType == other.runtimeType &&
-          width == other.width &&
-          height == other.height;
+      identical(this, other) || other is WidthAndHeight && runtimeType == other.runtimeType && width == other.width && height == other.height;
 
   @override
   int get hashCode => width.hashCode ^ height.hashCode;
