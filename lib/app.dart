@@ -11,6 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.pressStart2pTextTheme(Theme.of(context).textTheme),
       ),
+      title: "Fight club",
       home: const MainPage(),
     );
   }
