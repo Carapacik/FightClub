@@ -1,15 +1,15 @@
-import 'package:fightclub/main.dart';
+import 'package:fightclub/app.dart';
 import 'package:fightclub/pages/main_page.dart';
 import 'package:fightclub/pages/statistics_page.dart';
 import 'package:fightclub/widgets/secondary_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'container_checks.dart';
-import 'test_helpers.dart';
-import 'text_checks.dart';
+import '../container_checks.dart';
+import '../test_helpers.dart';
+import '../text_checks.dart';
 
-void module4() {
+void runTestLecture4hometask4() {
   testWidgets('module4', (WidgetTester tester) async {
     await tester.pumpWidget(App());
 

@@ -2,7 +2,7 @@
     package="com.carapacik.fightclub">
 
     <application
-        android:icon="@mipmap/launcher_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="Fight club">
         <activity
             android:name=".MainActivity"

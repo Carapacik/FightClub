@@ -1,13 +1,13 @@
-import 'package:fightclub/main.dart';
+import 'package:fightclub/app.dart';
 import 'package:fightclub/widgets/secondary_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'container_checks.dart';
-import 'test_helpers.dart';
-import 'text_checks.dart';
+import '../container_checks.dart';
+import '../test_helpers.dart';
+import '../text_checks.dart';
 
-void module2() {
+void runTestLecture4hometask2() {
   testWidgets("module2", (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(

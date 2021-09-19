@@ -33,44 +33,49 @@ class FightPageState extends State<FightPage> {
     return Scaffold(
       backgroundColor: FightClubColors.background,
       body: SafeArea(
-        child: Column(
-          children: [
-            FightersInfo(
-              maxLivesCount: maxLives,
-              youLivesCount: youLives,
-              enemyLivesCount: enemyLives,
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                child: ColoredBox(
-                  color: FightClubColors.darkPurple,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        centerText,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 10, color: FightClubColors.darkGreyText),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: Column(
+              children: [
+                FightersInfo(
+                  maxLivesCount: maxLives,
+                  youLivesCount: youLives,
+                  enemyLivesCount: enemyLives,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                    child: ColoredBox(
+                      color: FightClubColors.darkPurple,
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            centerText,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 10, color: FightClubColors.darkGreyText),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+                ControlsWidget(
+                    defendingBodyPart: defendingBodyPart,
+                    selectDefendingBodyPart: _selectDefendingBodyPart,
+                    attackingBodyPart: attackingBodyPart,
+                    selectAttackingBodyPart: _selectAttackingBodyPart),
+                const SizedBox(height: 14),
+                ActionButton(
+                  text: _isLivesCountZero() ? "Back" : "Go",
+                  onTap: _onGoButtonClicked,
+                  color: _getGoButtonColor(),
+                ),
+                const SizedBox(height: 16),
+              ],
             ),
-            ControlsWidget(
-                defendingBodyPart: defendingBodyPart,
-                selectDefendingBodyPart: _selectDefendingBodyPart,
-                attackingBodyPart: attackingBodyPart,
-                selectAttackingBodyPart: _selectAttackingBodyPart),
-            const SizedBox(height: 14),
-            ActionButton(
-              text: _isLivesCountZero() ? "Back" : "Go",
-              onTap: _onGoButtonClicked,
-              color: _getGoButtonColor(),
-            ),
-            const SizedBox(height: 16),
-          ],
+          ),
         ),
       ),
     );
@@ -260,8 +265,9 @@ class FightersInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 160,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
         children: [
           Row(

@@ -13,8 +13,9 @@ class FightResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 140,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
         children: [
           Row(

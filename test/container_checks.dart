@@ -8,7 +8,7 @@ void checkContainerDecorationColor({
   required final Color color,
   final Color? secondColor,
 }) {
-  const String widgetName = "Container";
+  final String widgetName = "Container";
   expect(
     container.decoration,
     isNotNull,

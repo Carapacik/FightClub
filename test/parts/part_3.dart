@@ -1,12 +1,12 @@
-import 'package:fightclub/main.dart';
+import 'package:fightclub/app.dart';
 import 'package:fightclub/pages/main_page.dart';
 import 'package:fightclub/pages/statistics_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'test_helpers.dart';
+import '../test_helpers.dart';
 
-void module3() {
+void runTestLecture4hometask3() {
   testWidgets('module3', (WidgetTester tester) async {
     await tester.pumpWidget(App());
 

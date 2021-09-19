@@ -28,66 +28,71 @@ class __MainPageContentState extends State<_MainPageContent> {
     return Scaffold(
       backgroundColor: FightClubColors.background,
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 24),
-            Center(
-              child: Text(
-                "The\nfight\nclub".toUpperCase(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 30, color: FightClubColors.darkGreyText),
-              ),
-            ),
-            const Expanded(child: SizedBox()),
-            FutureBuilder<String?>(
-              future: SharedPreferences.getInstance().then(
-                (sharedPreferences) => sharedPreferences.getString("last_fight_result"),
-              ),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || snapshot.data == null) {
-                  return const SizedBox();
-                }
-                final FightResult fightResult = FightResult.getByName(snapshot.data!);
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      "Last fight result",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: FightClubColors.darkGreyText, fontSize: 14),
-                    ),
-                    const SizedBox(height: 12),
-                    FightResultWidget(fightResult: fightResult),
-                  ],
-                );
-              },
-            ),
-            const Expanded(child: SizedBox()),
-            SecondaryActionButton(
-              text: "Statistics",
-              onTap: () => {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const StatisticsPage(),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: Column(
+              children: [
+                const SizedBox(height: 24),
+                Center(
+                  child: Text(
+                    "The\nfight\nclub".toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 30, color: FightClubColors.darkGreyText),
                   ),
                 ),
-              },
-            ),
-            const SizedBox(height: 16),
-            ActionButton(
-              onTap: () async {
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const FightPage(),
+                const Expanded(child: SizedBox()),
+                FutureBuilder<String?>(
+                  future: SharedPreferences.getInstance().then(
+                    (sharedPreferences) => sharedPreferences.getString("last_fight_result"),
                   ),
-                );
-                setState(() {});
-              },
-              color: FightClubColors.blackButton,
-              text: "Start",
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || snapshot.data == null) {
+                      return const SizedBox();
+                    }
+                    final FightResult fightResult = FightResult.getByName(snapshot.data!);
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "Last fight result",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: FightClubColors.darkGreyText, fontSize: 14),
+                        ),
+                        const SizedBox(height: 12),
+                        FightResultWidget(fightResult: fightResult),
+                      ],
+                    );
+                  },
+                ),
+                const Expanded(child: SizedBox()),
+                SecondaryActionButton(
+                  text: "Statistics",
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const StatisticsPage(),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 16),
+                ActionButton(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const FightPage(),
+                      ),
+                    );
+                    setState(() {});
+                  },
+                  color: FightClubColors.blackButton,
+                  text: "Start",
+                ),
+                const SizedBox(height: 16),
+              ],
             ),
-            const SizedBox(height: 16),
-          ],
+          ),
         ),
       ),
     );
