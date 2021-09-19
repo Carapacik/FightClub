@@ -68,8 +68,8 @@ class __MainPageContentState extends State<_MainPageContent> {
                 const Expanded(child: SizedBox()),
                 SecondaryActionButton(
                   text: "Statistics",
-                  onTap: () {
-                    Navigator.of(context).push(
+                  onTap: () async {
+                    await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const StatisticsPage(),
                       ),
@@ -78,8 +78,8 @@ class __MainPageContentState extends State<_MainPageContent> {
                 ),
                 const SizedBox(height: 16),
                 ActionButton(
-                  onTap: () {
-                    Navigator.of(context).push(
+                  onTap: () async {
+                     await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const FightPage(),
                       ),

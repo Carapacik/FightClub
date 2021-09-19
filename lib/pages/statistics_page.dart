@@ -35,8 +35,8 @@ class StatisticsPage extends StatelessWidget {
                       if (!snapshot.hasData || snapshot.data == null) {
                         return const SizedBox();
                       }
-                      _appearReview();
                       final SharedPreferences sp = snapshot.data!;
+                      _appearReview();
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
