@@ -1,7 +1,7 @@
-import 'package:fightclub/fight_result.dart';
+import 'package:fightclub/entities/fight_result.dart';
 import 'package:fightclub/pages/fight_page.dart';
 import 'package:fightclub/pages/statistics_page.dart';
-import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/app_colors.dart';
 import 'package:fightclub/widgets/action_button.dart';
 import 'package:fightclub/widgets/fight_result_widget.dart';
 import 'package:fightclub/widgets/secondary_action_button.dart';
@@ -26,7 +26,7 @@ class __MainPageContentState extends State<_MainPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FightClubColors.background,
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -38,26 +38,34 @@ class __MainPageContentState extends State<_MainPageContent> {
                   child: Text(
                     "The\nfight\nclub".toUpperCase(),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 30, color: FightClubColors.darkGreyText),
+                    style: const TextStyle(
+                      fontSize: 30,
+                      color: AppColors.darkGreyText,
+                    ),
                   ),
                 ),
                 const Expanded(child: SizedBox()),
                 FutureBuilder<String?>(
                   future: SharedPreferences.getInstance().then(
-                    (sharedPreferences) => sharedPreferences.getString("last_fight_result"),
+                    (sharedPreferences) =>
+                        sharedPreferences.getString("last_fight_result"),
                   ),
                   builder: (context, snapshot) {
-                    if (!snapshot.hasData || snapshot.data == null) {
+                    if (!snapshot.hasData) {
                       return const SizedBox();
                     }
-                    final FightResult fightResult = FightResult.getByName(snapshot.data!);
+                    final FightResult fightResult =
+                        FightResult.getByName(snapshot.data!);
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text(
                           "Last fight result",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: FightClubColors.darkGreyText, fontSize: 14),
+                          style: TextStyle(
+                            color: AppColors.darkGreyText,
+                            fontSize: 14,
+                          ),
                         ),
                         const SizedBox(height: 12),
                         FightResultWidget(fightResult: fightResult),
@@ -68,8 +76,8 @@ class __MainPageContentState extends State<_MainPageContent> {
                 const Expanded(child: SizedBox()),
                 SecondaryActionButton(
                   text: "Statistics",
-                  onTap: () async {
-                    await Navigator.of(context).push(
+                  onTap: () {
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const StatisticsPage(),
                       ),
@@ -78,15 +86,16 @@ class __MainPageContentState extends State<_MainPageContent> {
                 ),
                 const SizedBox(height: 16),
                 ActionButton(
-                  onTap: () async {
-                     await Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const FightPage(),
-                      ),
-                    );
-                    setState(() {});
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => const FightPage(),
+                          ),
+                        )
+                        .then((value) => setState(() {}));
                   },
-                  color: FightClubColors.blackButton,
+                  color: AppColors.blackButton,
                   text: "Start",
                 ),
                 const SizedBox(height: 16),

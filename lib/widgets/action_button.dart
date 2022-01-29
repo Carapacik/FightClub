@@ -1,17 +1,17 @@
-import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onTap;
-  final Color color;
-
   const ActionButton({
     Key? key,
     required this.onTap,
     required this.color,
     required this.text,
   }) : super(key: key);
+
+  final String text;
+  final VoidCallback onTap;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ActionButton extends StatelessWidget {
           style: const TextStyle(
             fontWeight: FontWeight.w900,
             fontSize: 16,
-            color: FightClubColors.whiteText,
+            color: AppColors.whiteText,
           ),
         ),
       ),

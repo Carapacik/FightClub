@@ -8,8 +8,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.pressStart2pTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.pressStart2pTextTheme(),
       ),
       title: "Fight club",
       home: const MainPage(),

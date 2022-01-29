@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FightClubColors {
-  FightClubColors._();
+class AppColors {
+  AppColors._();
 
   static const Color background = Color(0xFFD5DEF0);
   static const Color greyButton = Colors.black38;

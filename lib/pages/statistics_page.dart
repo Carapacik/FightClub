@@ -1,4 +1,4 @@
-import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/app_colors.dart';
 import 'package:fightclub/widgets/secondary_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -10,7 +10,7 @@ class StatisticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FightClubColors.background,
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -24,48 +24,49 @@ class StatisticsPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
-                      color: FightClubColors.darkGreyText,
+                      color: AppColors.darkGreyText,
                     ),
                   ),
                 ),
                 const Expanded(child: SizedBox.shrink()),
                 FutureBuilder<SharedPreferences>(
-                    future: SharedPreferences.getInstance(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || snapshot.data == null) {
-                        return const SizedBox();
-                      }
-                      final SharedPreferences sp = snapshot.data!;
-                      _appearReview();
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Won: ${sp.getInt("stats_won") ?? 0}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText,
-                            ),
+                  future: SharedPreferences.getInstance(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const SizedBox();
+                    }
+                    final SharedPreferences sp = snapshot.data!;
+                    _appearReview();
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Won: ${sp.getInt("stats_won") ?? 0}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: AppColors.darkGreyText,
                           ),
-                          const SizedBox(height: 6),
-                          Text(
-                            "Lost: ${sp.getInt("stats_lost") ?? 0}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText,
-                            ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          "Lost: ${sp.getInt("stats_lost") ?? 0}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: AppColors.darkGreyText,
                           ),
-                          const SizedBox(height: 6),
-                          Text(
-                            "Draw: ${sp.getInt("stats_draw") ?? 0}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText,
-                            ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          "Draw: ${sp.getInt("stats_draw") ?? 0}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: AppColors.darkGreyText,
                           ),
-                        ],
-                      );
-                    }),
+                        ),
+                      ],
+                    );
+                  },
+                ),
                 const Expanded(child: SizedBox.shrink()),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
