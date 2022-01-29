@@ -1,15 +1,15 @@
-import 'package:fightclub/resources/fight_club_colors.dart';
+import 'package:fightclub/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryActionButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final String text;
-
   const SecondaryActionButton({
     Key? key,
     required this.onTap,
     required this.text,
   }) : super(key: key);
+
+  final VoidCallback onTap;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,14 @@ class SecondaryActionButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 16),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: Border.all(color: FightClubColors.darkGreyText, width: 2),
+          border: Border.all(color: AppColors.darkGreyText, width: 2),
         ),
         child: Text(
           text.toUpperCase(),
-          style: const TextStyle(fontSize: 13, color: FightClubColors.darkGreyText),
+          style: const TextStyle(
+            fontSize: 13,
+            color: AppColors.darkGreyText,
+          ),
         ),
       ),
     );

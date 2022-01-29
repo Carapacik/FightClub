@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="/fight_club/">
+    <base href="$FLUTTER_BASE_HREF">
 
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="Beat the enemy">
+    <meta content="Beat the enemy" name="description">
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Fight club">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- iOS meta tags & icons -->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="fightclub" name="apple-mobile-web-app-title">
+    <link href="icons/Icon-192.png" rel="apple-touch-icon">
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Favicon -->
+    <link href="favicon.png" rel="icon" type="image/png"/>
 
-    <title>Fight club</title>
-    <link rel="manifest" href="manifest.json">
+    <title>Fight Club</title>
+    <link href="manifest.json" rel="manifest">
 </head>
 <body>
 <script>
@@ -32,7 +33,6 @@
       scriptTag.type = 'application/javascript';
       document.body.append(scriptTag);
     }
-
     if ('serviceWorker' in navigator) {
       // Service workers are supported. Use them.
       window.addEventListener('load', function () {
