@@ -1,7 +1,8 @@
 import 'package:fightclub/resources/app_colors.dart';
+import 'package:fightclub/utils.dart'
+    if (dart.library.io) 'package:fightclub/utils_io.dart' as utils;
 import 'package:fightclub/widgets/secondary_action_button.dart';
 import 'package:flutter/material.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StatisticsPage extends StatelessWidget {
@@ -36,7 +37,7 @@ class StatisticsPage extends StatelessWidget {
                       return const SizedBox();
                     }
                     final SharedPreferences sp = snapshot.data!;
-                    _appearReview();
+                    utils.appearReview();
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -81,12 +82,5 @@ class StatisticsPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _appearReview() async {
-    final InAppReview inAppReview = InAppReview.instance;
-    if (await inAppReview.isAvailable()) {
-      inAppReview.requestReview();
-    }
   }
 }
