@@ -12,21 +12,21 @@ const RESOURCES = {
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/google_fonts/PressStart2P-Regular.ttf": "f98cd910425bf727bd54ce767a9b6884",
-"assets/NOTICES": "fa3b0254c42cf0c657b19d05285411c5",
-"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
-"canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
-"canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
-"canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
+"assets/NOTICES": "b3a5257ab9235f3e6136ae7a180a041c",
+"canvaskit/canvaskit.js": "62b9906717d7215a6ff4cc24efbd1b5c",
+"canvaskit/canvaskit.wasm": "b179ba02b7a9f61ebc108f82c5a1ecdb",
+"canvaskit/profiling/canvaskit.js": "3783918f48ef691e230156c251169480",
+"canvaskit/profiling/canvaskit.wasm": "6d1b0fc1ec88c3110db88caa3393c580",
 "favicon.png": "3d61a78c61f011bea9b9acf496a8af1f",
 "icons/Icon-192.png": "8c56e2e7a9c7f27b57a9d8a67613a241",
 "icons/Icon-512.png": "877326a6945dae6ff2e45ff5568a592e",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "21f4a465dfbf47ff07438efcf9990286",
-"/": "21f4a465dfbf47ff07438efcf9990286",
-"main.dart.js": "270fe8fe00858a1a0941acbfe3bd4733",
-"manifest.json": "abf7997bbdbc99ab872e76a9f06b524a",
-"version.json": "452feadbeb81ecae69d370e68147e6cb"
+"index.html": "ef682d582cf040faada820d261b35555",
+"/": "ef682d582cf040faada820d261b35555",
+"main.dart.js": "a62fa86821fb4a553138417775b700bb",
+"manifest.json": "36f076ad64f15eeee53ac60b10ef230a",
+"version.json": "60bb2f09af389e3bc58bbf710c002e79"
 };
 
 // The application shell files that are downloaded before a service worker can
