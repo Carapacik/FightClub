@@ -9,12 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return _MainPageContent();
-  }
+  Widget build(BuildContext context) => _MainPageContent();
 }
 
 class _MainPageContent extends StatefulWidget {
@@ -24,86 +22,83 @@ class _MainPageContent extends StatefulWidget {
 
 class __MainPageContentState extends State<_MainPageContent> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1000),
-            child: Column(
-              children: [
-                const SizedBox(height: 24),
-                Center(
-                  child: Text(
-                    "The\nfight\nclub".toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      color: AppColors.darkGreyText,
+  Widget build(BuildContext context) => Scaffold(
+        backgroundColor: AppColors.background,
+        body: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1000),
+              child: Column(
+                children: [
+                  const SizedBox(height: 24),
+                  Center(
+                    child: Text(
+                      'The\nfight\nclub'.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: AppColors.darkGreyText,
+                      ),
                     ),
                   ),
-                ),
-                const Expanded(child: SizedBox()),
-                FutureBuilder<String?>(
-                  future: SharedPreferences.getInstance().then(
-                    (sharedPreferences) =>
-                        sharedPreferences.getString("last_fight_result"),
+                  const Expanded(child: SizedBox()),
+                  FutureBuilder<String?>(
+                    future: SharedPreferences.getInstance().then(
+                      (sharedPreferences) =>
+                          sharedPreferences.getString('last_fight_result'),
+                    ),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox();
+                      }
+                      final fightResult = FightResult.getByName(snapshot.data!);
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Last fight result',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppColors.darkGreyText,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          FightResultWidget(fightResult: fightResult),
+                        ],
+                      );
+                    },
                   ),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const SizedBox();
-                    }
-                    final FightResult fightResult =
-                        FightResult.getByName(snapshot.data!);
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          "Last fight result",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColors.darkGreyText,
-                            fontSize: 14,
-                          ),
+                  const Expanded(child: SizedBox()),
+                  SecondaryActionButton(
+                    text: 'Statistics',
+                    onTap: () {
+                      Navigator.of(context).push<void>(
+                        MaterialPageRoute(
+                          builder: (context) => const StatisticsPage(),
                         ),
-                        const SizedBox(height: 12),
-                        FightResultWidget(fightResult: fightResult),
-                      ],
-                    );
-                  },
-                ),
-                const Expanded(child: SizedBox()),
-                SecondaryActionButton(
-                  text: "Statistics",
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const StatisticsPage(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 16),
-                ActionButton(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(
-                          MaterialPageRoute(
-                            builder: (context) => const FightPage(),
-                          ),
-                        )
-                        .then((value) => setState(() {}));
-                  },
-                  color: AppColors.blackButton,
-                  text: "Start",
-                ),
-                const SizedBox(height: 16),
-              ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  ActionButton(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push<void>(
+                            MaterialPageRoute(
+                              builder: (context) => const FightPage(),
+                            ),
+                          )
+                          .then((value) => setState(() {}));
+                    },
+                    color: AppColors.blackButton,
+                    text: 'Start',
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

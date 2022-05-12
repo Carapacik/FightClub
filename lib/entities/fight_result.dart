@@ -1,21 +1,20 @@
 import 'package:fightclub/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class FightResult {
-  final String result;
-  final Color color;
+enum FightResult {
+  won._('Won', AppColors.green),
+  lost._('Lost', AppColors.red),
+  draw._('Draw', AppColors.blueButton);
 
   const FightResult._(this.result, this.color);
 
-  static const won = FightResult._("Won", AppColors.green);
-  static const lost = FightResult._("Lost", AppColors.red);
-  static const draw = FightResult._("Draw", AppColors.blueButton);
+  final String result;
+  final Color color;
 
-  static const values = [won, lost, draw];
+  static const List<FightResult> _values = [won, lost, draw];
 
-  static FightResult getByName(final String name) {
-    return values.firstWhere((fightResult) => fightResult.result == name);
-  }
+  static FightResult getByName(final String name) =>
+      values.firstWhere((fightResult) => fightResult.result == name);
 
   static FightResult? calculateResult(
     final int youLives,
@@ -33,7 +32,5 @@ class FightResult {
   }
 
   @override
-  String toString() {
-    return "FightResult{result : $result}";
-  }
+  String toString() => 'FightResult{result : $result}';
 }

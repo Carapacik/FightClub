@@ -1,14 +1,13 @@
 import 'package:fightclub/entities/body_part.dart';
 import 'package:fightclub/entities/fight_result.dart';
 import 'package:fightclub/resources/app_colors.dart';
-import 'package:fightclub/resources/app_icons.dart';
 import 'package:fightclub/resources/app_images.dart';
 import 'package:fightclub/widgets/action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
-  const FightPage({Key? key}) : super(key: key);
+  const FightPage({super.key});
 
   @override
   FightPageState createState() => FightPageState();
@@ -22,67 +21,65 @@ class FightPageState extends State<FightPage> {
   BodyPart _whatEnemyAttacks = BodyPart.random();
   int _youLives = _maxLives;
   int _enemyLives = _maxLives;
-  String _centerText = "";
+  String _centerText = '';
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: Column(
-              children: [
-                _FightersInfo(
-                  maxLivesCount: _maxLives,
-                  youLivesCount: _youLives,
-                  enemyLivesCount: _enemyLives,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 30,
-                    ),
-                    child: ColoredBox(
-                      color: AppColors.darkPurple,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Center(
-                          child: Text(
-                            _centerText,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: AppColors.darkGreyText,
+  Widget build(BuildContext context) => Scaffold(
+        backgroundColor: AppColors.background,
+        body: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 800),
+              child: Column(
+                children: [
+                  _FightersInfo(
+                    maxLivesCount: _maxLives,
+                    youLivesCount: _youLives,
+                    enemyLivesCount: _enemyLives,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 30,
+                      ),
+                      child: ColoredBox(
+                        color: AppColors.darkPurple,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Center(
+                            child: Text(
+                              _centerText,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 10,
+                                color: AppColors.darkGreyText,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                _ControlsWidget(
-                  defendingBodyPart: _defendingBodyPart,
-                  selectDefendingBodyPart: _selectDefendingBodyPart,
-                  attackingBodyPart: _attackingBodyPart,
-                  selectAttackingBodyPart: _selectAttackingBodyPart,
-                ),
-                const SizedBox(height: 14),
-                ActionButton(
-                  text: _isLivesCountZero() ? "Back" : "Go",
-                  onTap: _onGoButtonClicked,
-                  color: _getGoButtonColor(),
-                ),
-                const SizedBox(height: 16),
-              ],
+                  _ControlsWidget(
+                    defendingBodyPart: _defendingBodyPart,
+                    selectDefendingBodyPart: _selectDefendingBodyPart,
+                    attackingBodyPart: _attackingBodyPart,
+                    selectAttackingBodyPart: _selectAttackingBodyPart,
+                  ),
+                  const SizedBox(height: 14),
+                  ActionButton(
+                    text: _isLivesCountZero() ? 'Back' : 'Go',
+                    onTap: _onGoButtonClicked,
+                    color: _getGoButtonColor(),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Color _getGoButtonColor() {
     if (_isLivesCountZero()) {
@@ -94,21 +91,18 @@ class FightPageState extends State<FightPage> {
     }
   }
 
-  bool _isAllBodyPartsSelected() {
-    return _defendingBodyPart != null && _attackingBodyPart != null;
-  }
+  bool _isAllBodyPartsSelected() =>
+      _defendingBodyPart != null && _attackingBodyPart != null;
 
-  bool _isLivesCountZero() {
-    return _youLives == 0 || _enemyLives == 0;
-  }
+  bool _isLivesCountZero() => _youLives == 0 || _enemyLives == 0;
 
   void _onGoButtonClicked() {
     if (_isLivesCountZero()) {
       Navigator.of(context).pop();
     } else if (_isAllBodyPartsSelected()) {
       setState(() {
-        final bool enemyLoseLife = _attackingBodyPart != _whatEnemyDefends;
-        final bool youLoseLife = _defendingBodyPart != _whatEnemyAttacks;
+        final enemyLoseLife = _attackingBodyPart != _whatEnemyDefends;
+        final youLoseLife = _defendingBodyPart != _whatEnemyAttacks;
 
         if (enemyLoseLife) {
           _enemyLives--;
@@ -117,16 +111,15 @@ class FightPageState extends State<FightPage> {
           _youLives--;
         }
 
-        final FightResult? fightResult =
-            FightResult.calculateResult(_youLives, _enemyLives);
+        final fightResult = FightResult.calculateResult(_youLives, _enemyLives);
         if (fightResult != null) {
           SharedPreferences.getInstance().then((sharedPreferences) {
             sharedPreferences.setString(
-              "last_fight_result",
+              'last_fight_result',
               fightResult.result,
             );
-            final String key = "stats_${fightResult.result.toLowerCase()}";
-            final int currentValue = sharedPreferences.getInt(key) ?? 0;
+            final key = 'stats_${fightResult.result.toLowerCase()}';
+            final currentValue = sharedPreferences.getInt(key) ?? 0;
             sharedPreferences.setInt(key, currentValue + 1);
           });
         }
@@ -146,20 +139,20 @@ class FightPageState extends State<FightPage> {
     final bool enemyLoseLife,
   ) {
     if (_youLives == 0 && _enemyLives == 0) {
-      return "Draw";
+      return 'Draw';
     } else if (_enemyLives == 0) {
-      return "You won";
+      return 'You won';
     } else if (_youLives == 0) {
-      return "You lost";
+      return 'You lost';
     } else {
-      final String first = enemyLoseLife
+      final first = enemyLoseLife
           ? "You hit enemy's ${_attackingBodyPart!.name.toLowerCase()}."
-          : "Your attack was blocked.";
-      final String second = youLoseLife
-          ? "Enemy hit your ${_whatEnemyAttacks.name.toLowerCase()}."
+          : 'Your attack was blocked.';
+      final second = youLoseLife
+          ? 'Enemy hit your ${_whatEnemyAttacks.name.toLowerCase()}.'
           : "Enemy's attack was blocked.";
 
-      return "$first\n$second";
+      return '$first\n$second';
     }
   }
 
@@ -184,12 +177,11 @@ class FightPageState extends State<FightPage> {
 
 class _ControlsWidget extends StatelessWidget {
   const _ControlsWidget({
-    Key? key,
     required this.defendingBodyPart,
     required this.selectDefendingBodyPart,
     required this.attackingBodyPart,
     required this.selectAttackingBodyPart,
-  }) : super(key: key);
+  });
 
   final BodyPart? defendingBodyPart;
   final ValueSetter<BodyPart> selectDefendingBodyPart;
@@ -197,246 +189,238 @@ class _ControlsWidget extends StatelessWidget {
   final ValueSetter<BodyPart> selectAttackingBodyPart;
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            children: [
-              Text(
-                "Defend".toUpperCase(),
-                style: const TextStyle(color: AppColors.darkGreyText),
-              ),
-              const SizedBox(height: 13),
-              _BodyPartButton(
-                bodyPart: BodyPart.head,
-                selected: defendingBodyPart == BodyPart.head,
-                bodyPartSetter: selectDefendingBodyPart,
-              ),
-              const SizedBox(height: 14),
-              _BodyPartButton(
-                bodyPart: BodyPart.torso,
-                selected: defendingBodyPart == BodyPart.torso,
-                bodyPartSetter: selectDefendingBodyPart,
-              ),
-              const SizedBox(height: 14),
-              _BodyPartButton(
-                bodyPart: BodyPart.legs,
-                selected: defendingBodyPart == BodyPart.legs,
-                bodyPartSetter: selectDefendingBodyPart,
-              ),
-            ],
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'Defend'.toUpperCase(),
+                  style: const TextStyle(color: AppColors.darkGreyText),
+                ),
+                const SizedBox(height: 13),
+                _BodyPartButton(
+                  bodyPart: BodyPart.head,
+                  selected: defendingBodyPart == BodyPart.head,
+                  bodyPartSetter: selectDefendingBodyPart,
+                ),
+                const SizedBox(height: 14),
+                _BodyPartButton(
+                  bodyPart: BodyPart.torso,
+                  selected: defendingBodyPart == BodyPart.torso,
+                  bodyPartSetter: selectDefendingBodyPart,
+                ),
+                const SizedBox(height: 14),
+                _BodyPartButton(
+                  bodyPart: BodyPart.legs,
+                  selected: defendingBodyPart == BodyPart.legs,
+                  bodyPartSetter: selectDefendingBodyPart,
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            children: [
-              Text(
-                "Attack".toUpperCase(),
-                style: const TextStyle(color: AppColors.darkGreyText),
-              ),
-              const SizedBox(height: 13),
-              _BodyPartButton(
-                bodyPart: BodyPart.head,
-                selected: attackingBodyPart == BodyPart.head,
-                bodyPartSetter: selectAttackingBodyPart,
-              ),
-              const SizedBox(height: 14),
-              _BodyPartButton(
-                bodyPart: BodyPart.torso,
-                selected: attackingBodyPart == BodyPart.torso,
-                bodyPartSetter: selectAttackingBodyPart,
-              ),
-              const SizedBox(height: 14),
-              _BodyPartButton(
-                bodyPart: BodyPart.legs,
-                selected: attackingBodyPart == BodyPart.legs,
-                bodyPartSetter: selectAttackingBodyPart,
-              ),
-            ],
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'Attack'.toUpperCase(),
+                  style: const TextStyle(color: AppColors.darkGreyText),
+                ),
+                const SizedBox(height: 13),
+                _BodyPartButton(
+                  bodyPart: BodyPart.head,
+                  selected: attackingBodyPart == BodyPart.head,
+                  bodyPartSetter: selectAttackingBodyPart,
+                ),
+                const SizedBox(height: 14),
+                _BodyPartButton(
+                  bodyPart: BodyPart.torso,
+                  selected: attackingBodyPart == BodyPart.torso,
+                  bodyPartSetter: selectAttackingBodyPart,
+                ),
+                const SizedBox(height: 14),
+                _BodyPartButton(
+                  bodyPart: BodyPart.legs,
+                  selected: attackingBodyPart == BodyPart.legs,
+                  bodyPartSetter: selectAttackingBodyPart,
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 16),
-      ],
-    );
-  }
+          const SizedBox(width: 16),
+        ],
+      );
 }
 
 class _FightersInfo extends StatelessWidget {
   const _FightersInfo({
-    Key? key,
     required this.maxLivesCount,
     required this.youLivesCount,
     required this.enemyLivesCount,
-  }) : super(key: key);
+  });
 
   final int maxLivesCount;
   final int youLivesCount;
   final int enemyLivesCount;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 160,
-      child: Stack(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              Expanded(child: ColoredBox(color: AppColors.white)),
-              Expanded(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [AppColors.white, AppColors.darkPurple],
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(child: ColoredBox(color: AppColors.darkPurple))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _LivesWidget(
-                overallLivesCount: maxLivesCount,
-                currentLivesCount: youLivesCount,
-              ),
-              Column(
-                children: [
-                  const SizedBox(height: 16),
-                  const Text(
-                    "You",
-                    style: TextStyle(color: AppColors.darkGreyText),
-                  ),
-                  const SizedBox(height: 12),
-                  Image.asset(
-                    AppImages.youAvatar,
-                    width: 90,
-                    height: 90,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 44,
-                width: 44,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.blueButton,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "vs",
-                      style: TextStyle(
-                        color: AppColors.whiteText,
-                        fontSize: 16,
+  Widget build(BuildContext context) => SizedBox(
+        height: 160,
+        child: Stack(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                Expanded(child: ColoredBox(color: AppColors.white)),
+                Expanded(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [AppColors.white, AppColors.darkPurple],
                       ),
                     ),
                   ),
                 ),
-              ),
-              Column(
-                children: [
-                  const SizedBox(height: 16),
-                  const Text(
-                    "Enemy",
-                    style: TextStyle(color: AppColors.darkGreyText),
+                Expanded(child: ColoredBox(color: AppColors.darkPurple))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _LivesWidget(
+                  overallLivesCount: maxLivesCount,
+                  currentLivesCount: youLivesCount,
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    const Text(
+                      'You',
+                      style: TextStyle(color: AppColors.darkGreyText),
+                    ),
+                    const SizedBox(height: 12),
+                    Image.asset(
+                      AppImages.youAvatar,
+                      width: 90,
+                      height: 90,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 44,
+                  width: 44,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.blueButton,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'vs',
+                        style: TextStyle(
+                          color: AppColors.whiteText,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 12),
-                  Image.asset(
-                    AppImages.enemyAvatar,
-                    width: 90,
-                    height: 90,
-                  )
-                ],
-              ),
-              _LivesWidget(
-                overallLivesCount: maxLivesCount,
-                currentLivesCount: enemyLivesCount,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Enemy',
+                      style: TextStyle(color: AppColors.darkGreyText),
+                    ),
+                    const SizedBox(height: 12),
+                    Image.asset(
+                      AppImages.enemyAvatar,
+                      width: 90,
+                      height: 90,
+                    )
+                  ],
+                ),
+                _LivesWidget(
+                  overallLivesCount: maxLivesCount,
+                  currentLivesCount: enemyLivesCount,
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
 }
 
 class _LivesWidget extends StatelessWidget {
   const _LivesWidget({
-    Key? key,
     required this.overallLivesCount,
     required this.currentLivesCount,
-  })  : assert(overallLivesCount >= 1),
-        assert(currentLivesCount >= 0),
-        assert(currentLivesCount <= overallLivesCount),
-        super(key: key);
+  })  : assert(overallLivesCount >= 1, 'overallLivesCount must be more than 1'),
+        assert(currentLivesCount >= 0, 'currentLivesCount must be more than 1'),
+        assert(
+          currentLivesCount <= overallLivesCount,
+          'overallLivesCount must be more than currentLivesCount',
+        );
 
   final int overallLivesCount;
   final int currentLivesCount;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(overallLivesCount, (index) {
-        if (index < currentLivesCount) {
-          return [
-            Image.asset(AppIcons.heartFull, width: 18, height: 18),
-            if (overallLivesCount - 1 > index) const SizedBox(height: 4),
-          ];
-        } else {
-          return [
-            Image.asset(AppIcons.heartEmpty, width: 18, height: 18),
-            if (overallLivesCount - 1 > index) const SizedBox(height: 4),
-          ];
-        }
-      }).expand((element) => element).toList(),
-    );
-  }
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(overallLivesCount, (index) {
+          if (index < currentLivesCount) {
+            return [
+              Image.asset(AppImages.heartFull, width: 18, height: 18),
+              if (overallLivesCount - 1 > index) const SizedBox(height: 4),
+            ];
+          } else {
+            return [
+              Image.asset(AppImages.heartEmpty, width: 18, height: 18),
+              if (overallLivesCount - 1 > index) const SizedBox(height: 4),
+            ];
+          }
+        }).expand((element) => element).toList(),
+      );
 }
 
 class _BodyPartButton extends StatelessWidget {
   const _BodyPartButton({
-    Key? key,
     required this.bodyPart,
     required this.selected,
     required this.bodyPartSetter,
-  }) : super(key: key);
+  });
 
   final BodyPart bodyPart;
   final bool selected;
   final ValueSetter<BodyPart> bodyPartSetter;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => bodyPartSetter(bodyPart),
-      child: SizedBox(
-        height: 40,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: selected ? AppColors.blueButton : Colors.transparent,
-            border: !selected
-                ? Border.all(color: AppColors.darkGreyText, width: 2)
-                : null,
-          ),
-          child: Center(
-            child: Text(
-              bodyPart.name.toUpperCase(),
-              style: TextStyle(
-                fontSize: 13,
-                color: selected ? AppColors.whiteText : AppColors.darkGreyText,
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => bodyPartSetter(bodyPart),
+        child: SizedBox(
+          height: 40,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: selected ? AppColors.blueButton : Colors.transparent,
+              border: !selected
+                  ? Border.all(color: AppColors.darkGreyText, width: 2)
+                  : null,
+            ),
+            child: Center(
+              child: Text(
+                bodyPart.name.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 13,
+                  color:
+                      selected ? AppColors.whiteText : AppColors.darkGreyText,
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
