@@ -1,10 +1,10 @@
 {
     "name": "Fight Club",
-    "short_name": "FightClub",
+    "short_name": "Fight Club",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
+    "background_color": "#C5D1EA",
+    "theme_color": "#C5D1EA",
     "description": "Beat the enemy",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
