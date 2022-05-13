@@ -13,7 +13,7 @@ class StatisticsPage extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1000),
+              constraints: const BoxConstraints(maxWidth: 900),
               child: Column(
                 children: [
                   Container(

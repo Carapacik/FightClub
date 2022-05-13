@@ -27,7 +27,7 @@ class __MainPageContentState extends State<_MainPageContent> {
         body: SafeArea(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1000),
+              constraints: const BoxConstraints(maxWidth: 900),
               child: Column(
                 children: [
                   const SizedBox(height: 24),

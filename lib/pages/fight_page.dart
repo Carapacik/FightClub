@@ -29,7 +29,7 @@ class FightPageState extends State<FightPage> {
         body: SafeArea(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 800),
+              constraints: const BoxConstraints(maxWidth: 900),
               child: Column(
                 children: [
                   _FightersInfo(
