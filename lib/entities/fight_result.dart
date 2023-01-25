@@ -11,10 +11,7 @@ enum FightResult {
   final String result;
   final Color color;
 
-  static const List<FightResult> _values = [won, lost, draw];
-
-  static FightResult getByName(final String name) =>
-      values.firstWhere((fightResult) => fightResult.result == name);
+  static FightResult getByName(final String name) => values.firstWhere((fightResult) => fightResult.result == name);
 
   static FightResult? calculateResult(
     final int youLives,

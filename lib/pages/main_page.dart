@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fightclub/entities/fight_result.dart';
 import 'package:fightclub/pages/fight_page.dart';
 import 'package:fightclub/pages/statistics_page.dart';
@@ -21,6 +23,10 @@ class _MainPageContent extends StatefulWidget {
 }
 
 class __MainPageContentState extends State<_MainPageContent> {
+  Future<String?> get _getLastFightResult => SharedPreferences.getInstance().then(
+        (sp) => sp.getString('last_fight_result'),
+      );
+
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: AppColors.background,
@@ -43,15 +49,12 @@ class __MainPageContentState extends State<_MainPageContent> {
                   ),
                   const Expanded(child: SizedBox()),
                   FutureBuilder<String?>(
-                    future: SharedPreferences.getInstance().then(
-                      (sharedPreferences) =>
-                          sharedPreferences.getString('last_fight_result'),
-                    ),
+                    future: _getLastFightResult,
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return const SizedBox();
                       }
-                      final fightResult = FightResult.getByName(snapshot.data!);
+                      final fightResult = FightResult.getByName(snapshot.requireData!);
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -73,9 +76,11 @@ class __MainPageContentState extends State<_MainPageContent> {
                   SecondaryActionButton(
                     text: 'Statistics',
                     onTap: () {
-                      Navigator.of(context).push<void>(
-                        MaterialPageRoute(
-                          builder: (context) => const StatisticsPage(),
+                      unawaited(
+                        Navigator.of(context).push<void>(
+                          MaterialPageRoute(
+                            builder: (context) => const StatisticsPage(),
+                          ),
                         ),
                       );
                     },
@@ -83,13 +88,15 @@ class __MainPageContentState extends State<_MainPageContent> {
                   const SizedBox(height: 16),
                   ActionButton(
                     onTap: () {
-                      Navigator.of(context)
-                          .push<void>(
-                            MaterialPageRoute(
-                              builder: (context) => const FightPage(),
-                            ),
-                          )
-                          .then((value) => setState(() {}));
+                      unawaited(
+                        Navigator.of(context)
+                            .push<void>(
+                              MaterialPageRoute(
+                                builder: (context) => const FightPage(),
+                              ),
+                            )
+                            .then((value) => setState(() {})),
+                      );
                     },
                     color: AppColors.blackButton,
                     text: 'Start',

@@ -17,8 +17,8 @@ class FightPageState extends State<FightPage> {
   static const int _maxLives = 5;
   BodyPart? _defendingBodyPart;
   BodyPart? _attackingBodyPart;
-  BodyPart _whatEnemyDefends = BodyPart.random();
-  BodyPart _whatEnemyAttacks = BodyPart.random();
+  BodyPart _whatEnemyDefends = BodyPart.random;
+  BodyPart _whatEnemyAttacks = BodyPart.random;
   int _youLives = _maxLives;
   int _enemyLives = _maxLives;
   String _centerText = '';
@@ -91,8 +91,7 @@ class FightPageState extends State<FightPage> {
     }
   }
 
-  bool _isAllBodyPartsSelected() =>
-      _defendingBodyPart != null && _attackingBodyPart != null;
+  bool _isAllBodyPartsSelected() => _defendingBodyPart != null && _attackingBodyPart != null;
 
   bool _isLivesCountZero() => _youLives == 0 || _enemyLives == 0;
 
@@ -100,7 +99,7 @@ class FightPageState extends State<FightPage> {
     if (_isLivesCountZero()) {
       Navigator.of(context).pop();
     } else if (_isAllBodyPartsSelected()) {
-      setState(() {
+      setState(() async {
         final enemyLoseLife = _attackingBodyPart != _whatEnemyDefends;
         final youLoseLife = _defendingBodyPart != _whatEnemyAttacks;
 
@@ -113,7 +112,7 @@ class FightPageState extends State<FightPage> {
 
         final fightResult = FightResult.calculateResult(_youLives, _enemyLives);
         if (fightResult != null) {
-          SharedPreferences.getInstance().then((sharedPreferences) {
+          await SharedPreferences.getInstance().then((sharedPreferences) {
             sharedPreferences.setString(
               'last_fight_result',
               fightResult.result,
@@ -125,8 +124,8 @@ class FightPageState extends State<FightPage> {
         }
         _centerText = _calculateCenterText(youLoseLife, enemyLoseLife);
 
-        _whatEnemyDefends = BodyPart.random();
-        _whatEnemyAttacks = BodyPart.random();
+        _whatEnemyDefends = BodyPart.random;
+        _whatEnemyAttacks = BodyPart.random;
 
         _defendingBodyPart = null;
         _attackingBodyPart = null;
@@ -145,12 +144,10 @@ class FightPageState extends State<FightPage> {
     } else if (_youLives == 0) {
       return 'You lost';
     } else {
-      final first = enemyLoseLife
-          ? "You hit enemy's ${_attackingBodyPart!.name.toLowerCase()}."
-          : 'Your attack was blocked.';
-      final second = youLoseLife
-          ? 'Enemy hit your ${_whatEnemyAttacks.name.toLowerCase()}.'
-          : "Enemy's attack was blocked.";
+      final first =
+          enemyLoseLife ? "You hit enemy's ${_attackingBodyPart!.name.toLowerCase()}." : 'Your attack was blocked.';
+      final second =
+          youLoseLife ? 'Enemy hit your ${_whatEnemyAttacks.name.toLowerCase()}.' : "Enemy's attack was blocked.";
 
       return '$first\n$second';
     }
@@ -406,17 +403,14 @@ class _BodyPartButton extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: selected ? AppColors.blueButton : Colors.transparent,
-              border: !selected
-                  ? Border.all(color: AppColors.darkGreyText, width: 2)
-                  : null,
+              border: !selected ? Border.all(color: AppColors.darkGreyText, width: 2) : null,
             ),
             child: Center(
               child: Text(
                 bodyPart.name.toUpperCase(),
                 style: TextStyle(
                   fontSize: 13,
-                  color:
-                      selected ? AppColors.whiteText : AppColors.darkGreyText,
+                  color: selected ? AppColors.whiteText : AppColors.darkGreyText,
                 ),
               ),
             ),

@@ -12,7 +12,5 @@ enum BodyPart {
   @override
   String toString() => 'BodyPart{name: $name}';
 
-  static const List<BodyPart> _values = [head, torso, legs];
-
-  static BodyPart random() => _values[Random().nextInt(_values.length)];
+  static BodyPart get random => values[Random().nextInt(values.length)];
 }

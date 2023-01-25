@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fightclub/resources/app_colors.dart';
 import 'package:fightclub/utils.dart';
 import 'package:fightclub/widgets/secondary_action_button.dart';
@@ -6,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class StatisticsPage extends StatelessWidget {
   const StatisticsPage({super.key});
+
+  Future<SharedPreferences> get _getSp => SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -29,13 +33,13 @@ class StatisticsPage extends StatelessWidget {
                   ),
                   const Expanded(child: SizedBox.shrink()),
                   FutureBuilder<SharedPreferences>(
-                    future: SharedPreferences.getInstance(),
+                    future: _getSp,
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return const SizedBox();
                       }
                       final sp = snapshot.requireData;
-                      appearReview();
+                      unawaited(appearReview());
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

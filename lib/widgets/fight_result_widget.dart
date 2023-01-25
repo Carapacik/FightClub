@@ -49,8 +49,7 @@ class FightResultWidget extends StatelessWidget {
                 ),
                 Container(
                   height: 44,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
                     color: fightResult.color,
                     borderRadius: BorderRadius.circular(22),
