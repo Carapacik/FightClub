@@ -36,7 +36,7 @@ class StatisticsPage extends StatelessWidget {
                     future: _getSp,
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return const SizedBox();
+                        return const SizedBox.shrink();
                       }
                       final sp = snapshot.requireData;
                       unawaited(appearReview());

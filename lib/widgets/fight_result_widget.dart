@@ -13,9 +13,9 @@ class FightResultWidget extends StatelessWidget {
         height: 140,
         child: Stack(
           children: [
-            Row(
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
+              children: [
                 Expanded(child: ColoredBox(color: AppColors.white)),
                 Expanded(
                   child: DecoratedBox(
@@ -44,7 +44,7 @@ class FightResultWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Image.asset(AppImages.youAvatar, width: 90, height: 90)
+                    Image.asset(AppImages.youAvatar, width: 90, height: 90),
                   ],
                 ),
                 Container(
@@ -79,10 +79,10 @@ class FightResultWidget extends StatelessWidget {
                       AppImages.enemyAvatar,
                       width: 90,
                       height: 90,
-                    )
+                    ),
                   ],
                 ),
-                const SizedBox(width: 8)
+                const SizedBox(width: 8),
               ],
             ),
           ],

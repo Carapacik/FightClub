@@ -47,12 +47,12 @@ class __MainPageContentState extends State<_MainPageContent> {
                       ),
                     ),
                   ),
-                  const Expanded(child: SizedBox()),
+                  const Spacer(),
                   FutureBuilder<String?>(
                     future: _getLastFightResult,
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return const SizedBox();
+                        return const SizedBox.shrink();
                       }
                       final fightResult = FightResult.getByName(snapshot.requireData!);
                       return Column(
@@ -72,7 +72,7 @@ class __MainPageContentState extends State<_MainPageContent> {
                       );
                     },
                   ),
-                  const Expanded(child: SizedBox()),
+                  const Spacer(),
                   SecondaryActionButton(
                     text: 'Statistics',
                     onTap: () {

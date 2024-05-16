@@ -95,11 +95,12 @@ class FightPageState extends State<FightPage> {
 
   bool _isLivesCountZero() => _youLives == 0 || _enemyLives == 0;
 
-  void _onGoButtonClicked() {
+  Future<void> _onGoButtonClicked() async {
     if (_isLivesCountZero()) {
       Navigator.of(context).pop();
     } else if (_isAllBodyPartsSelected()) {
-      setState(() async {
+      final sp = await SharedPreferences.getInstance();
+      setState(() {
         final enemyLoseLife = _attackingBodyPart != _whatEnemyDefends;
         final youLoseLife = _defendingBodyPart != _whatEnemyAttacks;
 
@@ -112,15 +113,13 @@ class FightPageState extends State<FightPage> {
 
         final fightResult = FightResult.calculateResult(_youLives, _enemyLives);
         if (fightResult != null) {
-          await SharedPreferences.getInstance().then((sharedPreferences) {
-            sharedPreferences.setString(
-              'last_fight_result',
-              fightResult.result,
-            );
-            final key = 'stats_${fightResult.result.toLowerCase()}';
-            final currentValue = sharedPreferences.getInt(key) ?? 0;
-            sharedPreferences.setInt(key, currentValue + 1);
-          });
+          sp.setString(
+            'last_fight_result',
+            fightResult.result,
+          );
+          final key = 'stats_${fightResult.result.toLowerCase()}';
+          final currentValue = sp.getInt(key) ?? 0;
+          sp.setInt(key, currentValue + 1);
         }
         _centerText = _calculateCenterText(youLoseLife, enemyLoseLife);
 
@@ -268,9 +267,9 @@ class _FightersInfo extends StatelessWidget {
         height: 160,
         child: Stack(
           children: [
-            Row(
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
+              children: [
                 Expanded(child: ColoredBox(color: AppColors.white)),
                 Expanded(
                   child: DecoratedBox(
@@ -281,7 +280,7 @@ class _FightersInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: ColoredBox(color: AppColors.darkPurple))
+                Expanded(child: ColoredBox(color: AppColors.darkPurple)),
               ],
             ),
             Row(
@@ -303,7 +302,7 @@ class _FightersInfo extends StatelessWidget {
                       AppImages.youAvatar,
                       width: 90,
                       height: 90,
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -337,7 +336,7 @@ class _FightersInfo extends StatelessWidget {
                       AppImages.enemyAvatar,
                       width: 90,
                       height: 90,
-                    )
+                    ),
                   ],
                 ),
                 _LivesWidget(

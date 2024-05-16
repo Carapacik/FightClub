@@ -7,7 +7,7 @@ Future<void> appearReview() async {
   if (kIsWeb) {
     return;
   }
-  if (Platform.isAndroid || Platform.isIOS) {
+  if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
     final inAppReview = InAppReview.instance;
     if (await inAppReview.isAvailable()) {
       await inAppReview.requestReview();
